@@ -30,7 +30,7 @@ const Komentar = () =>{
         formKomentar.append('comment', comment)
 
         console.log(formKomentar)
-        await axios.post(`http://127.0.0.1:8000/api/komentars`,formKomentar).then(({data})=>{
+        await axios.post(`https://server-akmalfauzansuranta.herokuapp.com/api/komentars`,formKomentar).then(({data})=>{
             Swal.fire({
                 icon:"success",
                 text:data.message
@@ -50,7 +50,7 @@ const Komentar = () =>{
     }
 
     const fetchKomentar = async () => {
-        await axios.get(`http://127.0.0.1:8000/api/komentars`).then(({data})=>{
+        await axios.get(`https://server-akmalfauzansuranta.herokuapp.com/api/komentars`).then(({data})=>{
             console.log(data)
             setKomentars(data)
         })
@@ -64,7 +64,7 @@ const Komentar = () =>{
 
     return(
         <>
-        <video className={classes.bg} src="./videos/video-1.mp4" autoPlay loop muted />
+        <video className={classes.bg} src={`${process.env.PUBLIC_URL}/videos/video-1.mp4`} autoPlay loop muted />
         <div className={classes.komentarPage}>
             <div className={classes.textPersuasion}>
                 <h1>Want to collaborate ?</h1>
@@ -102,7 +102,7 @@ const Komentar = () =>{
                           <select className={classes.projectName} value={project_name} onChange={(event)=>{
                                 setProjectName(event.target.value)
                             }}>
-                                <option value="">Just Ask</option>
+                                <option value="Just Ask">Just Ask</option>
                               <option value="HealthyMed">HealthyMed</option>
                               <option value="Github finder and saver">Github finder and saver</option>
                               <option value="Story Uploader, tracking, viewer using google maps API and dicoding API">Story Uploader, tracking, viewer using google maps API and dicoding API</option>
@@ -131,12 +131,13 @@ const Komentar = () =>{
             <ul>
                 <li className={classes.listSosmed}>
                     <a href="https://www.instagram.com/ouuzannn/" target="_blank" >
-                        <img src="icons8-instagram.svg"/>
+                        <img src={`${process.env.PUBLIC_URL}/icons8-instagram.svg`}/>
                     </a>
                 </li>
                 <li className={classes.listSosmed}>
                     <a href="https://www.linkedin.com/in/akmal-fauzan-suranta-355595b3/" target="_blank">
-                        <img src="icons8-linkedin-circled.svg"/>
+                        <img
+                        src={`${process.env.PUBLIC_URL}/icons8-linkedin-circled.svg`}/>
                     </a>
                 </li>
             </ul>
